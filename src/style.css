@@ -94,3 +94,10 @@ ul {
 .forecastWeek {
   padding: 50px 90px;
 }
+
+.code {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 13px;
+}
