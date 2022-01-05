@@ -121,7 +121,7 @@ citySearch.addEventListener("submit", searchInput);
 function celsiusTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
-  degrees.innerHTML = "19º";
+  degrees.innerHTML = "19";
 }
 let formCelsius = document.querySelector("#celsius-temp");
 formCelsius.addEventListener("click", celsiusTemp);
@@ -129,7 +129,7 @@ formCelsius.addEventListener("click", celsiusTemp);
 function fahrTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
-  degrees.innerHTML = "66º";
+  degrees.innerHTML = "66";
 }
 let formFahr = document.querySelector("#fahr-temp");
 formFahr.addEventListener("click", fahrTemp);
