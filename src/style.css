@@ -100,8 +100,8 @@ h3 {
 ul {
   list-style: none;
   padding: 0px 10px;
-  text-align: center;
   color: #313b4a;
+  margin: 0 auto;
 }
 .humidity,
 .wind {
@@ -113,8 +113,15 @@ ul {
   color: #313b4a;
   border-radius: 7px;
   padding: 10px;
-  margin: auto;
   text-align: center;
+}
+
+.humidity {
+  margin: 0px 10px 0px 55px;
+}
+
+.wind {
+  margin: 0px 35px 0px 10px;
 }
 
 span {
@@ -127,7 +134,7 @@ span {
 
 .forecastDay {
   text-align: center;
-  padding: 0px 10px;
+  padding: 20px 70px;
 }
 .forecastWeek {
   padding: 50px 90px;
