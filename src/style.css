@@ -1,10 +1,6 @@
 body {
-  font-family: "Quicksand", sans-serif !important;
-  background-image: linear-gradient(
-    to right,
-    #d8eaea 0%,
-    #c9ccd5 100%
-  ) !important;
+  font-family: "Quicksand", sans-serif;
+  background-image: linear-gradient(to right, #d8eaea 0%, #c9ccd5 100%);
 }
 
 form {
@@ -72,6 +68,7 @@ input {
 
 h1,
 h2,
+h3,
 h5,
 ul,
 .others {
@@ -80,16 +77,24 @@ ul,
 }
 
 h1 {
-  font-size: 80px !important;
+  font-size: 80px;
   display: inline;
+  font-weight: bold;
 }
 
 h2 {
   display: inline;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 h5 {
-  font-size: 15px !important;
+  font-size: 15px;
+}
+
+h3 {
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 ul {
@@ -110,6 +115,10 @@ ul {
   padding: 10px;
   margin: auto;
   text-align: center;
+}
+
+span {
+  font-size: 25px;
 }
 
 .others {
@@ -134,10 +143,10 @@ ul {
 
 a {
   display: inline;
-  color: #6b789a !important;
-  text-decoration: none !important;
+  color: #6b789a;
+  text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline !important;
+  text-decoration: underline;
 }
