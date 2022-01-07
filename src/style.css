@@ -156,4 +156,14 @@ a {
 
 a:hover {
   text-decoration: underline;
+  color: #313b4a;
+}
+
+.active {
+  color: #313b4a;
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;
 }

@@ -61,7 +61,11 @@ function showWeather(response) {
   currentCity.innerHTML = response.data.name;
   let showDescription = document.querySelector("#description");
   showDescription.innerHTML = response.data.weather[0].description;
+  
+  celsiusTemperature = response.data.main.temp;
 }
+
+
 
 function searchCity(event) {
   event.preventDefault();
@@ -77,7 +81,7 @@ let newCity = document.querySelector("#searchForm");
 newCity.addEventListener("submit", searchCity);
 
 // get current location
-function getWeather(response) {
+function getLocationWeather(response) {
   let currentTemp = document.querySelector("#temp");
   currentTemp.innerHTML = Math.round(response.data.main.temp);
   let currentCity = document.querySelector("#location");
@@ -89,6 +93,7 @@ function getWeather(response) {
   let currentDescription = document.querySelector("#description");
   currentDescription.innerHTML = response.data.weather[0].description;
   
+  celsiusTemperature = response.data.main.temp;
 }
 
 function getCurrentLocation(position) {
@@ -99,7 +104,7 @@ function getCurrentLocation(position) {
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
   console.log(url);
 
-  axios.get(url).then(getWeather);
+  axios.get(url).then(getLocationWeather);
 }
 
 function currentLocation(event) {
@@ -123,18 +128,31 @@ citySearch.addEventListener("submit", searchInput);
 
 //changing from celsius to fahrenheit and reverse
 
-function celsiusTemp(event) {
+function displayCelsiusTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
-  degrees.innerHTML = "19";
+  formFahr.classList.remove("active");
+  formCelsius.classList.add("active");
+  degrees.innerHTML = Math.round(celsiusTemperature);
 }
 let formCelsius = document.querySelector("#celsius-temp");
-formCelsius.addEventListener("click", celsiusTemp);
+formCelsius.addEventListener("click", displayCelsiusTemp);
 
-function fahrTemp(event) {
+function displayFahrTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
-  degrees.innerHTML = "66";
+  //remove active class from celisus link
+  formCelsius.classList.remove("active");
+  formFahr.classList.add("active");
+  let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
+  degrees.innerHTML = Math.round(fahrenheitConversion);
 }
 let formFahr = document.querySelector("#fahr-temp");
-formFahr.addEventListener("click", fahrTemp);
+formFahr.addEventListener("click", displayFahrTemp);
+
+let celsiusTemperature = null
+
+let form = document.querySelector("#searchForm");
+form.addEventListener("submit", handleSubmit);
+
+search("Lisbon")
