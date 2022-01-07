@@ -61,6 +61,12 @@ function showWeather(response) {
   currentCity.innerHTML = response.data.name;
   let showDescription = document.querySelector("#description");
   showDescription.innerHTML = response.data.weather[0].description;
+  let showIcon = document.querySelector("#icon");
+  showIcon.setAttribute(
+    "src",
+    `images/gif/${response.data.weather[0].icon}.svg`
+  );
+  showIcon.setAttribute("alt", response.data.weather[0].icon);
   
   celsiusTemperature = response.data.main.temp;
 }
@@ -92,6 +98,12 @@ function getLocationWeather(response) {
   currentWind.innerHTML = Math.round(response.data.wind.speed);
   let currentDescription = document.querySelector("#description");
   currentDescription.innerHTML = response.data.weather[0].description;
+  let showIcon = document.querySelector("#icon");
+  showIcon.setAttribute(
+    "src",
+    `images/gif/${response.data.weather[0].icon}.svg`
+  );
+  showIcon.setAttribute("alt", response.data.weather[0].icon);
   
   celsiusTemperature = response.data.main.temp;
 }

@@ -76,10 +76,18 @@ ul,
   color: #313b4a;
 }
 
+img {
+  display: inline;
+  margin: 0 auto;
+  width: 150px;
+  vertical-align: middle;
+}
+
 h1 {
-  font-size: 80px;
+  font-size: 85px;
   display: inline;
   font-weight: bold;
+  vertical-align: middle;
 }
 
 h2 {
