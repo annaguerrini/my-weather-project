@@ -105,6 +105,27 @@ h3 {
   text-transform: uppercase;
 }
 
+a {
+  display: inline;
+  color: #f39d2a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #313b4a;
+}
+
+.active {
+  color: #313b4a;
+  cursor: default;
+  font-size: 22px;
+}
+
+.active:hover {
+  text-decoration: none;
+}
+
 ul {
   list-style: none;
   padding: 0px 10px;
@@ -156,22 +177,13 @@ span {
   color: #313b4a;
 }
 
-a {
+.links {
   display: inline;
   color: #6b789a;
   text-decoration: none;
 }
 
-a:hover {
+.links:hover {
   text-decoration: underline;
   color: #313b4a;
-}
-
-.active {
-  color: #313b4a;
-  cursor: default;
-}
-
-.active:hover {
-  text-decoration: none;
 }

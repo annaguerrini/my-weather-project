@@ -9,7 +9,7 @@ function formatDate(Date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let dayOfWeek = days[now.getDay()];
 
@@ -25,7 +25,7 @@ function formatDate(Date) {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
 
   let currentMonth = months[now.getMonth()];
@@ -71,18 +71,13 @@ function showWeather(response) {
   celsiusTemperature = response.data.main.temp;
 }
 
-function searchCity(event) {
-  event.preventDefault();
-  let city = document.querySelector("#citySearch");
+function searchCity(city) {
   let units = "metric";
   let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showWeather);
 }
-
-let newCity = document.querySelector("#searchForm");
-newCity.addEventListener("submit", searchCity);
 
 // get current location
 function getLocationWeather(response) {
@@ -164,6 +159,6 @@ function displayFahrTemp(event) {
 let formFahr = document.querySelector("#fahr-temp");
 formFahr.addEventListener("click", displayFahrTemp);
 
-let celsiusTemperature = null
+let celsiusTemperature = null;
 
 searchCity("Lisbon");
