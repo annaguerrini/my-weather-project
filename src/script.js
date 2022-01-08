@@ -71,8 +71,6 @@ function showWeather(response) {
   celsiusTemperature = response.data.main.temp;
 }
 
-
-
 function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector("#citySearch");
@@ -134,6 +132,10 @@ function searchInput(event) {
   let cityInput = document.querySelector("#citySearch");
   let search = document.querySelector("#location");
   search.innerHTML = `${cityInput.value}`;
+  formFahr.classList.remove("active");
+  formCelsius.classList.add("active");
+
+  searchCity(cityInput.value);
 }
 let citySearch = document.querySelector("#searchForm");
 citySearch.addEventListener("submit", searchInput);
@@ -164,7 +166,4 @@ formFahr.addEventListener("click", displayFahrTemp);
 
 let celsiusTemperature = null
 
-let form = document.querySelector("#searchForm");
-form.addEventListener("submit", handleSubmit);
-
-search("Lisbon")
+searchCity("Lisbon");
