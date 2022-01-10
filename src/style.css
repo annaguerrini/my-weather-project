@@ -108,7 +108,7 @@ h3 {
 
 a {
   display: inline;
-  color: #6b789a;
+  color: #aedbdf;
   text-decoration: none;
 }
 
@@ -164,17 +164,23 @@ ul {
   padding: 0px 10px;
 }
 
+.forecast-date,
+.forecast-hour {
+  font-size: 15px;
+}
+
 .forecastHour {
   text-align: center;
   padding: 20px 70px;
 }
 
-.forecastWeek {
-  padding: 50px 90px;
+.forecast-temperatures {
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.forecast-date {
-  font-weight: bold;
+.forecastWeek {
+  padding: 50px 90px;
 }
 
 .icon {
