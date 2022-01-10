@@ -49,7 +49,8 @@ function formatDate(Date) {
 formatDate();
 
 //displaying the forecast for the week ahead
-function displayForecastWeek() {
+function displayForecastWeek(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecastWeek");
 
   let forecastHTML = `<div class="row">`;
@@ -69,6 +70,13 @@ function displayForecastWeek() {
 
 forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecastWeek(coordinates) {
+  console.log(coordinates);
+  let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecastWeek);
 }
 
 // search engine (showing the weather and the city)
@@ -92,6 +100,8 @@ function showWeather(response) {
   showIcon.setAttribute("alt", response.data.weather[0].icon);
   
   celsiusTemperature = response.data.main.temp;
+
+  getForecastWeek(response.data.coord);
 }
 
 function searchCity(city) {
