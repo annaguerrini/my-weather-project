@@ -179,10 +179,12 @@ ul {
 
 .maxTemperature {
   font-weight: bold;
+  font-size: 20px;
 }
 
 .minTemperature {
   opacity: 0.6;
+  font-size: 16px;
 }
 
 .code {
