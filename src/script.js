@@ -48,35 +48,83 @@ function formatDate(Date) {
 }
 formatDate();
 
-//displaying the forecast for the week ahead
+//displaying the forecast for the WEEK ahead
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecastWeek(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecastWeek");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
-  days.forEach(function (day) {
-    forecastHTML = 
-      forecastHTML + `
-                <div class="col-2">
-                    <div class="forecast-date">${day}</div>
-                    🌥
-                    <div class="forecast-temperatures">
-                        <span class="minTemperature">13º </span>
-                        <span class="maxTemperature">18º</span>
-                    </div>
-                </div>`;
-});
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML + `
+          <div class="col-2">
+            <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
+            <img 
+              src="images/gif/${forecastDay.weather[0].icon}.svg"
+              alt="weather-icon" 
+              class="icon"   
+              id="icon"
+            />
+            <div class="forecast-temperatures">
+              <span class="minTemperature"> ${Math.round(forecastDay.temp.min)}º </span>
+              <span class="maxTemperature"> ${Math.round(forecastDay.temp.max)}º</span>
+            </div>
+          </div>`;
+    }  
+  });
 
 forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
 }
+
+// display forecast for the HOURS ahead
+function formatHour(timestamp) {
+  let time = new Date(timestamp * 1000);
+  let forecastHour = ("0" + time.getHours()).slice(-2);
+  return(forecastHour);
+}
+
+function displayForecastHour (response) {
+let forecast = response.data.hourly;
+let forecastSecondElement = document.querySelector("#forecastHour");
+
+let forecastHTML = `<div class="row">`;
+forecast.forEach(function (forecastHour, index) {
+  if(index < 6) {
+    forecastHTML = 
+      forecastHTML + `
+        <div class="col-2">
+          <div class="forecast-hour>${formatHour(forecastHour.dt)}</div>
+          <img 
+              src="images/gif/${forecastHour.weather[0].icon}.svg"
+              alt="weather-icon" 
+              class="icon"   
+              id="icon"
+          />
+          <span class="forecast-temperatures">${Math.round(forecastHour.temp)}°</span>
+        </div>`;
+  };
+});
+
+forecastHTML = forecastHTML + `</div>`;
+forecastSecondElement.innerHTML = forecastHTML;
+};
 
 function getForecastWeek(coordinates) {
   console.log(coordinates);
   let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecastWeek);
+  axios.get(apiUrl).then(displayForecastHour);
 }
 
 // search engine (showing the weather and the city)
@@ -113,36 +161,16 @@ function searchCity(city) {
 }
 
 // get current location
-function getLocationWeather(response) {
-  let currentTemp = document.querySelector("#temp");
-  currentTemp.innerHTML = Math.round(response.data.main.temp);
-  let currentCity = document.querySelector("#location");
-  currentCity.innerHTML = response.data.name;
-  let currentHumidity = document.querySelector("#humidity");
-  currentHumidity.innerHTML = Math.round(response.data.main.humidity);
-  let currentWind = document.querySelector("#wind-value");
-  currentWind.innerHTML = Math.round(response.data.wind.speed);
-  let currentDescription = document.querySelector("#description");
-  currentDescription.innerHTML = response.data.weather[0].description;
-  let showIcon = document.querySelector("#icon");
-  showIcon.setAttribute(
-    "src",
-    `images/gif/${response.data.weather[0].icon}.svg`
-  );
-  showIcon.setAttribute("alt", response.data.weather[0].icon);
-  
-  celsiusTemperature = response.data.main.temp;
-}
-
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let units = "metric";
   let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
-  console.log(url);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  console.log(apiUrl);
 
-  axios.get(url).then(getLocationWeather);
+  axios.get(apiUrl).then(showWeather);
+  
 }
 
 function currentLocation(event) {
@@ -154,7 +182,6 @@ let currentCityButton = document.querySelector("#locationButton");
 currentCityButton.addEventListener("click", currentLocation);
 
 //
-
 function searchInput(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#citySearch");
@@ -168,8 +195,8 @@ function searchInput(event) {
 let citySearch = document.querySelector("#searchForm");
 citySearch.addEventListener("submit", searchInput);
 
-//changing from celsius to fahrenheit and reverse
 
+//changing from celsius to fahrenheit and reverse
 function displayCelsiusTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
@@ -195,4 +222,3 @@ formFahr.addEventListener("click", displayFahrTemp);
 let celsiusTemperature = null;
 
 searchCity("Lisbon");
-displayForecastWeek();

@@ -77,7 +77,7 @@ ul,
   color: #313b4a;
 }
 
-img {
+.mainIcon {
   display: inline;
   margin: 0 auto;
   width: 150px;
@@ -108,7 +108,7 @@ h3 {
 
 a {
   display: inline;
-  color: #f39d2a;
+  color: #6b789a;
   text-decoration: none;
 }
 
@@ -164,7 +164,7 @@ ul {
   padding: 0px 10px;
 }
 
-.forecastDay {
+.forecastHour {
   text-align: center;
   padding: 20px 70px;
 }
@@ -177,9 +177,13 @@ ul {
   font-weight: bold;
 }
 
+.icon {
+  width: 60px;
+}
+
 .maxTemperature {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .minTemperature {
