@@ -33,7 +33,6 @@ function formatDate(Date) {
   let currentDay = now.getDate();
 
   let hour = now.getHours();
-  console.log(hour);
   if (hour < 10) {
     hour = `0${hour}`;
   }
@@ -94,6 +93,7 @@ function formatHour(timestamp) {
 }
 
 function displayForecastHour (response) {
+  console.log(response.data);
 let forecast = response.data.hourly;
 let forecastSecondElement = document.querySelector("#forecastHour");
 
@@ -102,6 +102,7 @@ forecast.forEach(function (forecastHour, index) {
   if(index < 6) {
     forecastHTML = 
       forecastHTML + `
+      <div class="row">
         <div class="col-2">
           <div class="forecast-hour>${formatHour(forecastHour.dt)}</div>
           <img 
@@ -120,16 +121,16 @@ forecastSecondElement.innerHTML = forecastHTML;
 };
 
 function getForecastWeek(coordinates) {
-  console.log(coordinates);
+  let units = "metric";
   let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecastWeek);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecastHour);
+  axios.get(apiUrl).then(displayForecastWeek);
+  
 }
 
 // search engine (showing the weather and the city)
 function showWeather(response) {
-  console.log(response.data);
   let showTemp = document.querySelector("#temp");
   showTemp.innerHTML = Math.round(response.data.main.temp);
   let showWind = document.querySelector("#wind-value");
