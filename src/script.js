@@ -48,6 +48,29 @@ function formatDate(Date) {
 }
 formatDate();
 
+//displaying the forecast for the week ahead
+function displayForecastWeek() {
+  let forecastElement = document.querySelector("#forecastWeek");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML = 
+      forecastHTML + `
+                <div class="col-2">
+                    <div class="forecast-date">${day}</div>
+                    🌥
+                    <div class="forecast-temperatures">
+                        <span class="minTemperature">13º </span>
+                        <span class="maxTemperature">18º</span>
+                    </div>
+                </div>`;
+});
+
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
 // search engine (showing the weather and the city)
 function showWeather(response) {
   console.log(response.data);
@@ -162,3 +185,4 @@ formFahr.addEventListener("click", displayFahrTemp);
 let celsiusTemperature = null;
 
 searchCity("Lisbon");
+displayForecastWeek();

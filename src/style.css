@@ -168,8 +168,21 @@ ul {
   text-align: center;
   padding: 20px 70px;
 }
+
 .forecastWeek {
   padding: 50px 90px;
+}
+
+.forecast-date {
+  font-weight: bold;
+}
+
+.maxTemperature {
+  font-weight: bold;
+}
+
+.minTemperature {
+  opacity: 0.6;
 }
 
 .code {
