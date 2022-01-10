@@ -1,6 +1,7 @@
 body {
   font-family: "Quicksand", sans-serif;
   background-image: linear-gradient(to right, #d8eaea 0%, #c9ccd5 100%);
+  color: #313b4a;
 }
 
 form {
@@ -132,6 +133,7 @@ ul {
   color: #313b4a;
   margin: 0 auto;
 }
+
 .humidity,
 .wind {
   display: block;
@@ -153,7 +155,8 @@ ul {
   margin: 0px 35px 0px 10px;
 }
 
-span {
+.humidity-value,
+.wind-value {
   font-size: 25px;
 }
 
