@@ -102,9 +102,8 @@ forecast.forEach(function (forecastHour, index) {
   if(index < 6) {
     forecastHTML = 
       forecastHTML + `
-      <div class="row">
         <div class="col-2">
-          <div class="forecast-hour>${formatHour(forecastHour.dt)}</div>
+          <div class="forecast-hour">${formatHour(forecastHour.dt)}h</div>
           <img 
               src="images/gif/${forecastHour.weather[0].icon}.svg"
               alt="weather-icon" 
