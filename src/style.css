@@ -223,6 +223,8 @@ ul {
 .forecastHour {
   text-align: center;
   padding: 20px 70px;
+  margin: 0 auto;
+  margin-left: 25px;
 }
 
 .forecast-temperatures {
