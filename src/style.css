@@ -197,11 +197,13 @@ ul {
 }
 
 .humidity {
-  margin: 0px 10px 0px 55px;
+  margin: auto;
+  margin-right: 10px;
 }
 
 .wind {
-  margin: 0px 35px 0px 10px;
+  margin: auto;
+  margin-left: 10px;
 }
 
 .humidity-value,
