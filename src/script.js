@@ -59,7 +59,6 @@ function formatDay(timestamp) {
 function displayForecastWeek(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecastWeek");
-
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
@@ -74,8 +73,8 @@ function displayForecastWeek(response) {
               id="icon"
             />
             <div class="forecast-temperatures">
-              <span class="minTemperature"> ${Math.round(forecastDay.temp.min)}º </span>
-              <span class="maxTemperature"> ${Math.round(forecastDay.temp.max)}º</span>
+              <span class="minTemperature" id="forecastTemp"> ${Math.round(forecastDay.temp.min)}</span><span class="minTemperature">º </span>
+              <span class="maxTemperature" id="forecastTemp"> ${Math.round(forecastDay.temp.max)}</span><span class="maxTemperature">º </span>
             </div>
           </div>`;
     }  
@@ -93,7 +92,6 @@ function formatHour(timestamp) {
 }
 
 function displayForecastHour (response) {
-  console.log(response.data);
 let forecast = response.data.hourly;
 let forecastSecondElement = document.querySelector("#forecastHour");
 
@@ -110,7 +108,7 @@ forecast.forEach(function (forecastHour, index) {
               class="icon"   
               id="icon"
           />
-          <span class="forecast-temperatures">${Math.round(forecastHour.temp)}°</span>
+          <span class="forecast-temperatures" id="forecastTemp">${Math.round(forecastHour.temp)}</span><span class="forecast-temperatures">º</span>
         </div>`;
   };
 });
@@ -160,6 +158,19 @@ function searchCity(city) {
   axios.get(apiUrl).then(showWeather);
 }
 
+function searchInput(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#citySearch");
+  let search = document.querySelector("#location");
+  search.innerHTML = `${cityInput.value}`;
+  formFahr.classList.remove("active");
+  formCelsius.classList.add("active");
+
+  searchCity(cityInput.value);
+}
+let citySearch = document.querySelector("#searchForm");
+citySearch.addEventListener("submit", searchInput);
+
 // get current location
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
@@ -181,21 +192,6 @@ function currentLocation(event) {
 let currentCityButton = document.querySelector("#locationButton");
 currentCityButton.addEventListener("click", currentLocation);
 
-//
-function searchInput(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#citySearch");
-  let search = document.querySelector("#location");
-  search.innerHTML = `${cityInput.value}`;
-  formFahr.classList.remove("active");
-  formCelsius.classList.add("active");
-
-  searchCity(cityInput.value);
-}
-let citySearch = document.querySelector("#searchForm");
-citySearch.addEventListener("submit", searchInput);
-
-
 //changing from celsius to fahrenheit and reverse
 function displayCelsiusTemp(event) {
   event.preventDefault();
@@ -216,13 +212,14 @@ function displayFahrTemp(event) {
   let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
   degrees.innerHTML = Math.round(fahrenheitConversion);
 }
+
 let formFahr = document.querySelector("#fahr-temp");
 formFahr.addEventListener("click", displayFahrTemp);
 
 let celsiusTemperature = null;
 
+//changing to dark mode
 const htmlEl = document.getElementsByTagName('html')[0];
-
 const toggleTheme = (theme) => {
     htmlEl.dataset.theme = theme;
 }
