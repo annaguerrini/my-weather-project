@@ -1,8 +1,6 @@
 body {
   font-family: "Quicksand", sans-serif;
-  background-image: linear-gradient(to right, #d8eaea 0%, #c9ccd5 100%);
   background-image: var(--background-image);
-  color: #313b4a;
   color: var(--text-color);
 }
 
@@ -11,8 +9,6 @@ body {
   --text-color: #313b4a;
   --background-color: #fff;
   --border-card: 1px solid #fff;
-  --border-input: 1px solid #fff;
-  --input-color: #313b4a;
   --background-boxes: #d8eaea;
   --button-color: #6b789a;
   --button-color-2: #d8eaea;
@@ -26,8 +22,6 @@ html[data-theme="dark"] {
   --background-image: linear-gradient(to right, #16213e 0%, #0f3460 100%);
   --background-color: #1b1b2f;
   --border-card: 1px solid #1b1b2f;
-  --border-input: 1px solid #1b1b2f;
-  --input-color: #feffeb;
   --background-boxes: #0f3460;
   --button-color: #f19435;
   --button-color-2: #0f3460;
@@ -44,9 +38,7 @@ form {
 .searchBar,
 .weatherToday,
 .forecastWeek {
-  border: 1px solid #fff;
   border: var(--border-card);
-  background-color: #fff;
   background-color: var(--background-color);
   border-radius: 3px;
   text-align: center;
@@ -76,17 +68,14 @@ form {
 }
 
 input {
-  border: 1px solid #fff;
-  border: var(--border-input);
+  border: var(--border-card);
   border-radius: 7px;
-  color: #313b4a;
-  color: var(--input-color);
+  color: var(--text-color);
 }
 
 .city {
   width: 10cm;
   padding: 10px;
-  background-color: #d8eaea;
   background-color: var(--background-boxes);
 }
 
@@ -94,16 +83,13 @@ input {
 .location,
 .mode1,
 .mode2 {
-  background-color: #6b789a;
   background-color: var(--button-color);
   border-radius: 7px;
 }
 
 .search,
 .location {
-  border: 1px solid #fff;
-  border: var(--border-input);
-  color: #fff;
+  border: var(--border-card);
   color: var(--button-color-3);
   padding: 10px;
   width: 1.5cm;
@@ -111,9 +97,7 @@ input {
 
 .mode1,
 .mode2 {
-  border: 1px solid #6b789a;
   border: var(--border-mode);
-  color: #d8eaea;
   color: var(--button-color-2);
   padding: 5px;
   width: 3cm;
@@ -129,9 +113,7 @@ input {
 .location:hover,
 .mode1:hover,
 .mode2:hover {
-  background-color: #d8eaea;
   background-color: var(--button-color-2);
-  color: #6b789a;
   color: var(--button-color);
 }
 
@@ -142,7 +124,6 @@ h5,
 ul,
 .others {
   text-align: center;
-  color: #313b4a;
   color: var(--text-color);
 }
 
@@ -177,19 +158,16 @@ h3 {
 
 a {
   display: inline;
-  color: #aedbdf;
   color: var(--link-color);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: #313b4a;
   color: var(--text-color);
 }
 
 .active {
-  color: #313b4a;
   color: var(--text-color);
   cursor: default;
   font-size: 22px;
@@ -202,7 +180,6 @@ a:hover {
 ul {
   list-style: none;
   padding: 0px 10px;
-  color: #313b4a;
   margin: 0 auto;
 }
 
@@ -211,11 +188,8 @@ ul {
   display: block;
   border-style: solid;
   border-width: 2px;
-  border-color: #d8eaea;
   border-color: var(--background-boxes);
-  background-color: #d8eaea;
   background-color: var(--background-boxes);
-  color: #313b4a;
   color: var(--text-color);
   border-radius: 7px;
   padding: 10px;
@@ -277,18 +251,16 @@ ul {
   margin: 0 auto;
   text-align: center;
   font-size: 13px;
-  color: #313b4a;
   color: var(--text-color);
 }
 
 .links {
   display: inline;
-  color: #6b789a;
   color: var(--link-color);
   text-decoration: none;
 }
 
 .links:hover {
   text-decoration: underline;
-  color: #313b4a;
+  color: var(--text-color);
 }
