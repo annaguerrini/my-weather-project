@@ -16,6 +16,7 @@ body {
   --background-boxes: #d8eaea;
   --button-color: #6b789a;
   --button-color-2: #d8eaea;
+  --button-color-3: #fff;
   --link-color: #6b789a;
   --border-mode: #6b789a;
 }
@@ -30,6 +31,7 @@ html[data-theme="dark"] {
   --background-boxes: #0f3460;
   --button-color: #f19435;
   --button-color-2: #0f3460;
+  --button-color-3: #0f3460;
   --link-color: #f19435;
   --border-mode: #0f3460;
 }
@@ -94,8 +96,6 @@ input {
 .mode2 {
   background-color: #6b789a;
   background-color: var(--button-color);
-  color: #fff;
-  color: var(--button-color-2);
   border-radius: 7px;
 }
 
@@ -103,6 +103,8 @@ input {
 .location {
   border: 1px solid #fff;
   border: var(--border-input);
+  color: #fff;
+  color: var(--button-color-3);
   padding: 10px;
   width: 1.5cm;
 }
@@ -111,6 +113,8 @@ input {
 .mode2 {
   border: 1px solid #6b789a;
   border: var(--border-mode);
+  color: #d8eaea;
+  color: var(--button-color-2);
   padding: 5px;
   width: 3cm;
   margin: 2px;
