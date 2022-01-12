@@ -8,6 +8,7 @@ body {
   --background-image: linear-gradient(to right, #d8eaea 0%, #c9ccd5 100%);
   --text-color: #313b4a;
   --background-color: #fff;
+  --box-shadow: 0px 30px 50px grey;
   --border-card: 1px solid #fff;
   --background-boxes: #d8eaea;
   --button-color: #6b789a;
@@ -21,6 +22,7 @@ html[data-theme="dark"] {
   --text-color: #feffeb;
   --background-image: linear-gradient(to right, #16213e 0%, #0f3460 100%);
   --background-color: #1b1b2f;
+  --box-shadow: 0px 30px 50px black;
   --border-card: 1px solid #1b1b2f;
   --background-boxes: #0f3460;
   --button-color: #f19435;
@@ -42,7 +44,7 @@ form {
   background-color: var(--background-color);
   border-radius: 3px;
   text-align: center;
-  box-shadow: 0px 50px 50px rgba(65, 50, 100, 0.08);
+  box-shadow: var(--box-shadow);
 }
 
 .searchBar {
