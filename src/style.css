@@ -1,5 +1,6 @@
 body {
   font-family: "Quicksand", sans-serif;
+  transition: 0.3s ease;
   background-image: var(--background-image);
   color: var(--text-color);
 }
@@ -45,6 +46,7 @@ form {
   border-radius: 3px;
   text-align: center;
   box-shadow: var(--box-shadow);
+  transition: 0.3s ease;
 }
 
 .searchBar {
@@ -73,12 +75,14 @@ input {
   border: var(--border-card);
   border-radius: 7px;
   color: var(--text-color);
+  transition: 0.3s ease;
 }
 
 .city {
   width: 10cm;
   padding: 10px;
   background-color: var(--background-boxes);
+  transition: 0.3s ease;
 }
 
 .search,
@@ -87,6 +91,7 @@ input {
 .mode2 {
   background-color: var(--button-color);
   border-radius: 7px;
+  transition: 0.3s ease;
 }
 
 .search,
@@ -95,6 +100,7 @@ input {
   color: var(--button-color-3);
   padding: 10px;
   width: 1.5cm;
+  transition: 0.3s ease;
 }
 
 .mode1,
@@ -104,6 +110,7 @@ input {
   padding: 5px;
   width: 3cm;
   margin: 2px;
+  transition: 0.3s ease;
 }
 
 .modes {
@@ -117,6 +124,7 @@ input {
 .mode2:hover {
   background-color: var(--button-color-2);
   color: var(--button-color);
+  transition: 0.3s ease;
 }
 
 h1,
@@ -127,6 +135,7 @@ ul,
 .others {
   text-align: center;
   color: var(--text-color);
+  transition: 0.3s ease;
 }
 
 .mainIcon {
@@ -162,6 +171,7 @@ a {
   display: inline;
   color: var(--link-color);
   text-decoration: none;
+  transition: 0.3s ease;
 }
 
 a:hover {
@@ -173,6 +183,7 @@ a:hover {
   color: var(--text-color);
   cursor: default;
   font-size: 22px;
+  transition: 0.3s ease;
 }
 
 .active:hover {
@@ -196,6 +207,7 @@ ul {
   border-radius: 7px;
   padding: 10px;
   text-align: center;
+  transition: 0.3s ease;
 }
 
 .humidity {
@@ -258,12 +270,14 @@ ul {
   text-align: center;
   font-size: 13px;
   color: var(--text-color);
+  transition: 0.3s ease;
 }
 
 .links {
   display: inline;
   color: var(--link-color);
   text-decoration: none;
+  transition: 0.3s ease;
 }
 
 .links:hover {
