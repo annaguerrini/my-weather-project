@@ -161,8 +161,6 @@ function searchCity(city) {
 function searchInput(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#citySearch");
-  let search = document.querySelector("#location");
-  search.innerHTML = `${cityInput.value}`;
   formFahr.classList.remove("active");
   formCelsius.classList.add("active");
 
