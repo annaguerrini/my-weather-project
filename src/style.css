@@ -241,7 +241,8 @@ ul {
   margin-left: 25px;
 }
 
-.forecast-temperatures {
+.forecast-temperatures,
+.forecast-temperature {
   font-size: 22px;
   font-weight: bold;
 }
@@ -254,12 +255,14 @@ ul {
   width: 60px;
 }
 
-.maxTemperature {
+.maxTemperature,
+.maxTemperatures {
   font-weight: bold;
   font-size: 22px;
 }
 
-.minTemperature {
+.minTemperature,
+.minTemperatures {
   opacity: 0.6;
   font-size: 16px;
 }
