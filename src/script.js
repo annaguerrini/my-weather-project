@@ -1,3 +1,6 @@
+//API
+let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
+
 // The date, time, month etc
 let now = new Date();
 
@@ -118,8 +121,7 @@ forecastSecondElement.innerHTML = forecastHTML;
 };
 
 function getForecastWeek(coordinates) {
-  let units = "metric";
-  let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
+  var units = "metric"
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecastHour);
   axios.get(apiUrl).then(displayForecastWeek);
@@ -152,10 +154,13 @@ function showWeather(response) {
 
 function searchCity(city) {
   let units = "metric";
-  let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(showWeather);
+  //handling wrong city name
+  axios.get(apiUrl).then(showWeather).catch(function(error) {
+  alert("Oops! No city was found with this name.");
+});
 }
 
 function searchInput(event) {
@@ -169,12 +174,12 @@ function searchInput(event) {
 let citySearch = document.querySelector("#searchForm");
 citySearch.addEventListener("submit", searchInput);
 
+
 // get current location
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let units = "metric";
-  let apiKey = "f74c00b613a11dea2e6e66f4aa3444fe";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
   console.log(apiUrl);
 
@@ -194,6 +199,8 @@ currentCityButton.addEventListener("click", currentLocation);
 function displayCelsiusTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
+  let formCelsius = document.querySelector("#celsius-temp");
+  let formFahr = document.querySelector("#fahr-temp");
   formFahr.classList.remove("active");
   formCelsius.classList.add("active");
   degrees.innerHTML = Math.round(celsiusTemperature);
@@ -205,6 +212,8 @@ function displayFahrTemp(event) {
   event.preventDefault();
   let degrees = document.querySelector("#temp");
   //remove active class from celisus link
+  let formCelsius = document.querySelector("#celsius-temp");
+  let formFahr = document.querySelector("#fahr-temp");
   formCelsius.classList.remove("active");
   formFahr.classList.add("active");
   let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
@@ -212,7 +221,7 @@ function displayFahrTemp(event) {
 }
 
 let formFahr = document.querySelector("#fahr-temp");
-formFahr.addEventListener("click", displayFahrTemp);
+formFahr.addEventListener("click", displayFahrTemp); 
 
 let celsiusTemperature = null;
 
