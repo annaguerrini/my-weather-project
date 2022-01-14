@@ -17,18 +17,18 @@ function formatDate(Date) {
   let dayOfWeek = days[now.getDay()];
 
   let months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
     "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   let currentMonth = months[now.getMonth()];
@@ -60,11 +60,10 @@ function formatDay(timestamp) {
 }
 
 function displayForecastWeek(response) {
-  let forecast = response.data.daily;
+  let forecast = response.data.daily.slice(1, 7);
   let forecastElement = document.querySelector("#forecastWeek");
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+  forecast.forEach(function (forecastDay) {
       forecastHTML =
         forecastHTML + `
           <div class="col-2">
@@ -75,16 +74,18 @@ function displayForecastWeek(response) {
               class="icon"   
               id="icon"
             />
-            <div class="forecast-temperatures">
-              <span class="minTemperature" id="forecastTemp"> ${Math.round(forecastDay.temp.min)}</span><span class="minTemperature">º </span>
-              <span class="maxTemperature" id="forecastTemp"> ${Math.round(forecastDay.temp.max)}</span><span class="maxTemperature">º </span>
+            <div class="forecast-temperature">
+              <span class="minTemperature" id="forecastTemp"> ${Math.round(forecastDay.temp.min)}</span><span class="minTemperatures">º </span>
+              <span class="maxTemperature" id="forecastTemp"> ${Math.round(forecastDay.temp.max)}</span><span class="maxTemperatures">º </span>
             </div>
           </div>`;
-    }  
+    minForecastTemp = forecastDay.temp.min;
+    maxForecastTemp = forecastDay.temp.max;
   });
 
 forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
+
 }
 
 // display forecast for the HOURS ahead
@@ -95,12 +96,11 @@ function formatHour(timestamp) {
 }
 
 function displayForecastHour (response) {
-let forecast = response.data.hourly;
+let forecast = response.data.hourly.slice(1, 7);
 let forecastSecondElement = document.querySelector("#forecastHour");
 
 let forecastHTML = `<div class="row">`;
-forecast.forEach(function (forecastHour, index) {
-  if(index < 6) {
+forecast.forEach(function (forecastHour) {
     forecastHTML = 
       forecastHTML + `
         <div class="col-2">
@@ -111,13 +111,14 @@ forecast.forEach(function (forecastHour, index) {
               class="icon"   
               id="icon"
           />
-          <span class="forecast-temperatures" id="forecastTemp">${Math.round(forecastHour.temp)}</span><span class="forecast-temperatures">º</span>
+          <span class="forecast-temperatures" id="forecastTemp">${Math.round(forecastHour.temp)}</span><span class="forecast-temperature">º</span>
         </div>`;
-  };
+hourlyForecastTemp = forecastHour.temp;
 });
 
 forecastHTML = forecastHTML + `</div>`;
 forecastSecondElement.innerHTML = forecastHTML;
+
 };
 
 function getForecastWeek(coordinates) {
@@ -197,20 +198,41 @@ currentCityButton.addEventListener("click", currentLocation);
 
 //changing from celsius to fahrenheit and reverse
 function displayCelsiusTemp(event) {
+  
   event.preventDefault();
   let degrees = document.querySelector("#temp");
+  let forecastHourlyTemp = document.querySelectorAll(".forecast-temperatures");
+  let minTemp = document.querySelectorAll(".minTemperature");
+  let maxTemp = document.querySelectorAll(".maxTemperature");
   let formCelsius = document.querySelector("#celsius-temp");
   let formFahr = document.querySelector("#fahr-temp");
   formFahr.classList.remove("active");
   formCelsius.classList.add("active");
   degrees.innerHTML = Math.round(celsiusTemperature);
+  forecastHourlyTemp.forEach(function (element) {
+    element.innerHTML = Math.round(hourlyForecastTemp);
+  });
+  minTemp.forEach(function (element) {
+    element.innerHTML = Math.round(minForecastTemp);
+  });
+  maxTemp.forEach(function (element) {
+    element.innerHTML = Math.round(maxForecastTemp);
+  });
+  forecastHourlyTemp.innerHTML = Math.round(hourlyForecastTemp);
+  minTemp.innerHTML = Math.round(minForecastTemp);
+  maxTemp.innerHTML = Math.round(maxForecastTemp);
+
 }
 let formCelsius = document.querySelector("#celsius-temp");
 formCelsius.addEventListener("click", displayCelsiusTemp);
 
 function displayFahrTemp(event) {
+
   event.preventDefault();
   let degrees = document.querySelector("#temp");
+  let forecastHourlyTemp = document.querySelectorAll(".forecast-temperatures");
+  let minTemp = document.querySelectorAll(".minTemperature");
+  let maxTemp = document.querySelectorAll(".maxTemperature");
   //remove active class from celisus link
   let formCelsius = document.querySelector("#celsius-temp");
   let formFahr = document.querySelector("#fahr-temp");
@@ -218,12 +240,26 @@ function displayFahrTemp(event) {
   formFahr.classList.add("active");
   let fahrenheitConversion = (celsiusTemperature * 9) / 5 + 32;
   degrees.innerHTML = Math.round(fahrenheitConversion);
+  forecastHourlyTemp.forEach(function (element) {
+    element.innerHTML = Math.round((hourlyForecastTemp* 9) / 5 + 32);
+  });
+  minTemp.forEach(function (element) {
+    element.innerHTML = Math.round((minForecastTemp * 9) / 5 + 32);
+  });
+  let fahrenheitMaxConversion = (maxForecastTemp * 9) / 5 + 32;
+  maxTemp.forEach(function (element) {
+    element.innerHTML =  Math.round((maxForecastTemp * 9) / 5 + 32);
+  });
 }
+
 
 let formFahr = document.querySelector("#fahr-temp");
 formFahr.addEventListener("click", displayFahrTemp); 
 
 let celsiusTemperature = null;
+let hourlyForecastTemp = null;
+let minForecastTemp = null;
+let maxForecastTemp = null
 
 //changing to dark mode
 const htmlEl = document.getElementsByTagName('html')[0];
