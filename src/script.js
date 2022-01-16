@@ -121,8 +121,8 @@ function displayForecastHour (response) {
   forecastSecondElement.innerHTML = forecastHTML;
 };
 
-function getForecastWeek(coordinates) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid=${apiKey}&units=${units}`;
+function getForecastWeek(coord) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&exclude={part}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecastHour);
   axios.get(apiUrl).then(displayForecastWeek);
   
@@ -147,7 +147,7 @@ function showWeather(response) {
   );
   showIcon.setAttribute("alt", response.data.weather[0].icon);
 
-  coord = response.data.coord;
+  cityName = response.data.name;
 
   getForecastWeek(response.data.coord);
 }
@@ -201,11 +201,10 @@ function displayCelsiusTemp(event) {
   formFahr.classList.remove("active"); //adding active class from celsius link
   formCelsius.classList.add("active");
   units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coord.lat}&lon=${coord.lon}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
   let windUnits= document.querySelector("#windUnits");
   windUnits.innerHTML = "km/h";
-  
 }
 let formCelsius = document.querySelector("#celsius-temp");
 formCelsius.addEventListener("click", displayCelsiusTemp);
@@ -215,7 +214,7 @@ function displayFahrTemp(event) {
   formCelsius.classList.remove("active"); //remove active class from celsius link
   formFahr.classList.add("active");
   units = "imperial";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coord.lat}&lon=${coord.lon}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
   let windUnits= document.querySelector("#windUnits");
   windUnits.innerHTML = "mph";
@@ -224,7 +223,7 @@ function displayFahrTemp(event) {
 let formFahr = document.querySelector("#fahr-temp");
 formFahr.addEventListener("click", displayFahrTemp); 
 
-let coord = null;
+let cityName = null;
 let units = "metric"; 
 
 //changing to dark mode
