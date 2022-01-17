@@ -204,7 +204,7 @@ function displayCelsiusTemp(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
   let windUnits= document.querySelector("#windUnits");
-  windUnits.innerHTML = "km/h";
+  windUnits.innerHTML = "m/s";
 }
 let formCelsius = document.querySelector("#celsius-temp");
 formCelsius.addEventListener("click", displayCelsiusTemp);
