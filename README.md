@@ -1,4 +1,4 @@
-This is the code I used on my weather app
+This is the code I used on my weather app.
 You can see it live here: https://elated-goodall-0e0d0f.netlify.app/
 
 What you are able to see here 👀: 
